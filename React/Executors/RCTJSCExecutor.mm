@@ -596,7 +596,10 @@ RCT_EXPORT_METHOD(setContextName:(nonnull NSString *)contextName)
       }
     } else {
       if (!errorJSRef && JSC_JSValueGetType(ctx, batchedBridgeRef) == kJSTypeUndefined) {
-        error = RCTErrorWithMessage(@"Unable to execute JS call: __fbBatchedBridge is undefined");
+        error = RCTErrorWithMessage(@"Unable to execute JS call: __fbBatchedBridge is undefined. This can happen "
+                                    "if you try to execute JS before the bridge has finished setting up. If the "
+                                    "issue persists, try resetting React Native devtools (e.g. by uninstalling and "
+                                    "reinstalling this app).");
       }
     }
 
